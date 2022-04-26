@@ -3,8 +3,9 @@ import { createStackNavigator } from '@react-navigation/stack';
 // import { StatusBar } from 'expo-status-bar';
 // import { StyleSheet, Text, View } from 'react-native';
 
-import Home from './screens/Home';
 import UsersList from './screens/UsersList';
+import UserDetail from './screens/UserDetail';
+import CreateUsers from './screens/CreateUsers';
 
 const Stack = createStackNavigator();
 
@@ -21,11 +22,11 @@ function App() {
     <NavigationContainer theme={MyTheme}>
       <Stack.Navigator
         screenOptions={{ headersShow: false }}
-        initialRouteName="UsersList"
+        initialRouteName="CreateUsers"
       >
+        <Stack.Screen name="CreateUsers" component={CreateUsers} />
         <Stack.Screen name="UsersList" component={UsersList} />
-        {/* <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Home" component={Home} /> */}
+        <Stack.Screen name="UserDetail" component={UserDetail} />
       </Stack.Navigator>
     </NavigationContainer>
   );
