@@ -4,17 +4,18 @@ import { collection, query, where, onSnapshot } from 'firebase/firestore';
 import { db } from '../database/firebase';
 
 import FocusedStatusBar from '../components/FocusedStatusBar';
+// const [users, setUsers] = useState([]);
 
 const UsersList = () => {
   useEffect(() => {
     const q = query(collection(db, 'users'));
-    const queryUser = onSnapshot(q, querySnapshot => {
-      // const cities = [];
+    onSnapshot(q, querySnapshot => {
+      const users = [];
       querySnapshot.forEach(doc => {
-        // cities.push(doc.data().name);
-        console.log(doc.data());
+        const { name, email, phone } = doc.data();
+        users.push({ id: doc.id, name, email, phone });
       });
-      console.log(queryUser);
+      setUsers(users);
     });
   }, []);
   return (
